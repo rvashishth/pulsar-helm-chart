@@ -57,6 +57,9 @@ volumes:
   # configure the components to use local persistent volume
   # the local provisioner should be installed prior to enable local persistent volume
   local_storage: false
+  # this applies only if StorageClass resource is in use
+  storageClass:
+    reclaimPolicy: Retain
 
 ## AntiAffinity
 ##
