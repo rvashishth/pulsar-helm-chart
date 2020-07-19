@@ -40,6 +40,19 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+Helm recommended labels
+*/}}
+{{- define "pulsar.helmLabels" -}}
+app.kubernetes.io/name: {{ include "pulsar.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+helm.sh/chart: {{ include "pulsar.chart" . }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+{{- end }}
+
+{{/*
 Create the common labels.
 */}}
 {{- define "pulsar.standardLabels" -}}
@@ -48,6 +61,7 @@ chart: {{ template "pulsar.chart" . }}
 release: {{ .Release.Name }}
 heritage: {{ .Release.Service }}
 cluster: {{ template "pulsar.fullname" . }}
+{{ include "pulsar.helmLabels" . }}
 {{- end }}
 
 {{/*
@@ -57,6 +71,7 @@ Create the template labels.
 app: {{ template "pulsar.name" . }}
 release: {{ .Release.Name }}
 cluster: {{ template "pulsar.fullname" . }}
+{{ include "pulsar.helmLabels" . }}
 {{- end }}
 
 {{/*
