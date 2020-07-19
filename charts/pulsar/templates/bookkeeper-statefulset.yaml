@@ -34,7 +34,7 @@ spec:
       {{- include "pulsar.matchLabels" . | nindent 6 }}
       component: {{ .Values.bookkeeper.component }}
   updateStrategy:
-{{ toYaml .Values.bookkeeper.updateStrategy | indent 4 }}
+    {{ toYaml .Values.bookkeeper.updateStrategy | indent 4 }}
   podManagementPolicy: {{ .Values.bookkeeper.podManagementPolicy }}
   template:
     metadata:

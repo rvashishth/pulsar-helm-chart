@@ -473,6 +473,8 @@ autorecovery:
   # so the metrics are correctly rendered in grafana dashboard
   component: recovery
   replicaCount: 1
+  updateStrategy:
+    type: RollingUpdate
   ports:
     http: 8000
   # nodeSelector:
@@ -523,6 +525,8 @@ broker:
   # so the metrics are correctly rendered in grafana dashboard
   component: broker
   replicaCount: 3
+  updateStrategy:
+    type: RollingUpdate
   ports:
     http: 8080
     https: 8443
@@ -609,6 +613,8 @@ proxy:
   # so the metrics are correctly rendered in grafana dashboard
   component: proxy
   replicaCount: 3
+  updateStrategy:
+    type: RollingUpdate
   # nodeSelector:
     # cloud.google.com/gke-nodepool: default-pool
   probe:
@@ -725,6 +731,8 @@ toolset:
   component: toolset
   useProxy: true
   replicaCount: 1
+  updateStrategy:
+    type: RollingUpdate
   # nodeSelector:
     # cloud.google.com/gke-nodepool: default-pool
   annotations: {}

@@ -30,7 +30,7 @@ spec:
   serviceName: "{{ template "pulsar.fullname" . }}-{{ .Values.autorecovery.component }}"
   replicas: {{ .Values.autorecovery.replicaCount }}
   updateStrategy:
-    type: RollingUpdate
+    {{ toYaml .Values.autorecovery.updateStrategy | indent 4 }}
   podManagementPolicy: Parallel
   # nodeSelector:
   selector:

@@ -34,7 +34,7 @@ spec:
       {{- include "pulsar.matchLabels" . | nindent 6 }}
       component: {{ .Values.proxy.component }}
   updateStrategy:
-    type: RollingUpdate
+    {{ toYaml .Values.proxy.updateStrategy | indent 4 }}
   podManagementPolicy: Parallel
   template:
     metadata:

@@ -30,7 +30,7 @@ spec:
   serviceName: "{{ template "pulsar.fullname" . }}-{{ .Values.toolset.component }}"
   replicas: {{ .Values.toolset.replicaCount }}
   updateStrategy:
-    type: RollingUpdate
+    {{ toYaml .Values.toolset.updateStrategy | indent 4 }}
   podManagementPolicy: Parallel
   selector:
     matchLabels:
